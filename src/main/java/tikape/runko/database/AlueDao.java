@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tikape.runko.database;
 
 import java.sql.Connection;
@@ -11,20 +6,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import tikape.runko.domain.Käyttäjä;
+import tikape.runko.domain.Alue;
 
-public class OpiskelijaDao implements Dao<Käyttäjä, Integer> {
+public class AlueDao implements Dao<Alue, Integer> {
 
     private Database database;
 
-    public OpiskelijaDao(Database database) {
+    public AlueDao(Database database) {
         this.database = database;
     }
 
     @Override
-    public Käyttäjä findOne(Integer key) throws SQLException {
+    public Alue findOne(Integer key) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Opiskelija WHERE id = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Alue WHERE alueid = ?");
         stmt.setObject(1, key);
 
         ResultSet rs = stmt.executeQuery();
@@ -33,10 +28,10 @@ public class OpiskelijaDao implements Dao<Käyttäjä, Integer> {
             return null;
         }
 
-        Integer id = rs.getInt("id");
+        Integer alueid = rs.getInt("alueid");
         String nimi = rs.getString("nimi");
 
-        Käyttäjä o = new Käyttäjä(id, nimi);
+        Alue o = new Alue(alueid, nimi);
 
         rs.close();
         stmt.close();
@@ -46,25 +41,25 @@ public class OpiskelijaDao implements Dao<Käyttäjä, Integer> {
     }
 
     @Override
-    public List<Käyttäjä> findAll() throws SQLException {
+    public List<Alue> findAll() throws SQLException {
 
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Opiskelija");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Alue");
 
         ResultSet rs = stmt.executeQuery();
-        List<Käyttäjä> opiskelijat = new ArrayList<>();
+        List<Alue> alueet = new ArrayList<>();
         while (rs.next()) {
-            Integer id = rs.getInt("id");
+            Integer alueid = rs.getInt("alueid");
             String nimi = rs.getString("nimi");
 
-            opiskelijat.add(new Käyttäjä(id, nimi));
+            alueet.add(new Alue(alueid, nimi));
         }
 
         rs.close();
         stmt.close();
         connection.close();
 
-        return opiskelijat;
+        return alueet;
     }
 
     @Override

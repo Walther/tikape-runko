@@ -1,21 +1,21 @@
 package tikape.runko.domain;
 
-public class Käyttäjä {
+public class Alue {
 
-    private Integer id;
+    private Integer alueid;
     private String nimi;
 
-    public Käyttäjä(Integer id, String nimi) {
-        this.id = id;
+    public Alue (Integer id, String nimi) {
+        this.alueid = id;
         this.nimi = nimi;
     }
 
     public Integer getId() {
-        return id;
+        return alueid;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.alueid = id;
     }
 
     public String getNimi() {
@@ -27,3 +27,4 @@ public class Käyttäjä {
     }
 
 }
+

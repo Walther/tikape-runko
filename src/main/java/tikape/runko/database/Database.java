@@ -34,6 +34,19 @@ public class Database {
             System.out.println("Error >> " + t.getMessage());
         }
     }
+    
+    public int update(String updateQuery, Object... params) throws SQLException {
+        PreparedStatement stmt = getConnection().prepareStatement(updateQuery);
+
+        for (int i = 0; i < params.length; i++) {
+            stmt.setObject(i + 1, params[i]);
+        }
+
+        int changes = stmt.executeUpdate();
+        stmt.close();
+
+        return changes;
+    }
 
     private List<String> sqliteLauseet() {
         ArrayList<String> lista = new ArrayList<>();
@@ -48,6 +61,7 @@ public class Database {
         lista.add("INSERT INTO ALUE (alueID, nimi) VALUES (1, 'Opiskelu');");
         lista.add("INSERT INTO ALUE (alueID, nimi) VALUES (2, 'Elämä');");
         lista.add("INSERT INTO LANKA (lankaID, nimi, alueID) VALUES (1, 'Tikape', 1);");
+        lista.add("INSERT INTO VIESTI (viestiID, kayttajaID, lankaid, aika, viesti) VALUES (1, 1, 1, 2016-10-11, 'Osaamme ohjelmoida!');");
         
         return lista;
     }

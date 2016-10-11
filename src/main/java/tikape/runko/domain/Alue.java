@@ -9,6 +9,10 @@ public class Alue {
         this.alueid = id;
         this.nimi = nimi;
     }
+    public Alue (String nimi) {
+        this.alueid = null;
+        this.nimi = nimi;
+    }
 
     public Integer getId() {
         return alueid;

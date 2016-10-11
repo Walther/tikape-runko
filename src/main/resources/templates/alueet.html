@@ -14,5 +14,10 @@
                 <span th:text="${alue.nimi}">alueen nimi</span> <a th:href="${'/alueet/' + alue.id}">linkki</a>
             </li>
         </ol>
+        <form method="POST" action="/uusialue">
+            Nimi:<br/>
+            <input type="text" name="nimi"/><br/>
+            <input type="submit" value="Lisää alue"/>
+        </form>
     </body>
 </html>

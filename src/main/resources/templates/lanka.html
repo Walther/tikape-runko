@@ -7,11 +7,12 @@
     </head>
 
     <body>
-        <h1>Heippa vaan!</h1>
+        <h1 th:text="${lanka.nimi}"></h1>
 
-        <p>Ja .. <span th:text="${viesti}">jotain?</span></p>
-
-        <p><a href="/kayttajat">Tästä käyttäjälistaukseen.</a></p>
-        <p><a href="/alueet">Tästä aluelistaukseen.</a></p>
+        <ol>
+            <li th:each="viesti: ${viestit}">
+                <span th:text="${viesti.viesti}">viesti</span> 
+            </li>
+        </ol>
     </body>
 </html>

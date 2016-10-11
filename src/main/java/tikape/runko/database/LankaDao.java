@@ -48,20 +48,20 @@ public class LankaDao implements Dao<Lanka, Integer> {
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lanka");
 
         ResultSet rs = stmt.executeQuery();
-        List<Lanka> alueet = new ArrayList<>();
+        List<Lanka> langat = new ArrayList<>();
         while (rs.next()) {
             Integer lankaid = rs.getInt("lankaid");
             Integer alueid = rs.getInt("alueid");
             String nimi = rs.getString("nimi");
 
-            alueet.add(new Lanka(lankaid, nimi, alueid));
+            langat.add(new Lanka(lankaid, nimi, alueid));
         }
 
         rs.close();
         stmt.close();
         connection.close();
 
-        return alueet;
+        return langat;
     }
     
     public List<Lanka> findAllByAlue(Integer alueid) throws SQLException {
@@ -84,7 +84,9 @@ public class LankaDao implements Dao<Lanka, Integer> {
 
         return langat;
     }
-
+    public void save(Lanka lanka) throws SQLException {
+        this.database.update("INSERT INTO LANKA (lankaid, nimi, alueid) VALUES (?, ?, ?)", lanka.getId(), lanka.getNimi(), lanka.getAlueId());
+    }
     @Override
     public void delete(Integer key) throws SQLException {
         // ei toteutettu

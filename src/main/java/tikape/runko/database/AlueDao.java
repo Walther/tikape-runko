@@ -62,6 +62,10 @@ public class AlueDao implements Dao<Alue, Integer> {
         return alueet;
     }
 
+    public void save(Alue alue) throws SQLException {
+        this.database.update("INSERT INTO ALUE (alueid, nimi) VALUES (?, ?)", alue.getId(), alue.getNimi());
+    }
+
     @Override
     public void delete(Integer key) throws SQLException {
         // ei toteutettu

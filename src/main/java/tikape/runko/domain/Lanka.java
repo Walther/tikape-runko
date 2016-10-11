@@ -11,7 +11,11 @@ public class Lanka {
         this.nimi = nimi;
         this.alueid = alueid;
     }
-
+    public Lanka(String nimi, Integer alueid) {
+        this.lankaid = null;
+        this.nimi = nimi;
+        this.alueid = alueid;
+    }
     public Integer getId() {
         return lankaid;
     }

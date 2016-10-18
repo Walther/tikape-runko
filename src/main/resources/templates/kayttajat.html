@@ -11,8 +11,14 @@
 
         <ol>
             <li th:each="kayttaja: ${kayttajat}">
-                <span th:text="${kayttaja.nimi}">käyttäjän nimi</span> <a th:href="${'/kayttajat/' + kayttaja.id}">linkki</a>
+                <span th:text="${kayttaja.nimi}">käyttäjän nimi</span>
             </li>
         </ol>
+        
+        <form method="POST" action="/uusikayttaja">
+            Nimi:<br/>
+            <input type="text" name="nimi"/><br/>
+            <input type="submit" value="Lisää käyttäjä"/>
+        </form>
     </body>
 </html>

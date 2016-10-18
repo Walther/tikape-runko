@@ -9,10 +9,32 @@
     <body>
         <h1 th:text="${lanka.nimi}"></h1>
 
-        <ol>
-            <li th:each="viesti: ${viestit}">
-                <span th:text="${viesti.viesti}">viesti</span> 
-            </li>
-        </ol>
+        <table>
+            <tr>
+                <th>Käyttäjä</th>
+                <th>Viesti</th>
+                <th>Aika</th>
+                
+            </tr>
+            <tr th:each="viesti: ${viestit}">   
+                <td th:text="${kayttajat[__${viesti.kayttajaId -1}__].nimi}"></td> <!--TODO: korjaa oikea id-pohjainen haku, nyt luottaa järjestysnumeroon-->
+                <td th:text="${viesti.viesti}"></td>
+                <td th:text="${viesti.aika}"></td>
+                
+            </tr>
+
+        </table>
+
+        <form method="POST" action="/uusiviesti">
+            Viesti:<br/>
+            <textarea name="viesti"></textarea><br/>
+            Käyttäjätunnus: <br/>
+            <select name="kayttajaid">
+                <option th:each="kayttaja: ${kayttajat}" th:value="${kayttaja.id}" th:text="${kayttaja.nimi}"></option>
+            </select>
+            <input type="hidden" name="lankaid" th:value="${lanka.id}"/>
+            <input type="submit" value="Lisää viesti"/>
+        </form>
+
     </body>
 </html>

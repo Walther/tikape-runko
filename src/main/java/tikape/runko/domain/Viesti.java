@@ -16,6 +16,15 @@ public class Viesti {
         this.aika = aika;
 
     }
+    
+    public Viesti(String viesti, Integer lankaid, Integer kayttajaid, String aika) {
+        this.viestiid = null;
+        this.viesti = viesti;
+        this.lankaid = lankaid;
+        this.kayttajaid = kayttajaid;
+        this.aika = aika;
+
+    }
 
     public Integer getId() {
         return viestiid;

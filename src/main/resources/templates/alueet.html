@@ -8,12 +8,22 @@
 
     <body>
         <h1>Alueet!</h1>
+        
+        <table>
+            <tr>
+                <th>Alue</th>
+                <th>Viestejä</th>
+                <th>Viimeisin viesti</th>
+                
+            </tr>
+            <tr th:each="alue: ${alueet}">   
+                <td><a th:href="${'/alueet/' + alue.id}" th:text="${alue.nimi}"></a></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
 
-        <ol>
-            <li th:each="alue: ${alueet}">
-                <span th:text="${alue.nimi}">alueen nimi</span> <a th:href="${'/alueet/' + alue.id}">linkki</a>
-            </li>
-        </ol>
+        </table>
         <form method="POST" action="/uusialue">
             Nimi:<br/>
             <input type="text" name="nimi"/><br/>

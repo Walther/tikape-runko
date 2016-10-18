@@ -9,6 +9,11 @@ public class Kayttaja {
         this.kayttajaid = id;
         this.nimi = nimi;
     }
+    
+    public Kayttaja(String nimi) {
+        this.kayttajaid = null;
+        this.nimi = nimi;
+    }
 
     public Integer getId() {
         return kayttajaid;

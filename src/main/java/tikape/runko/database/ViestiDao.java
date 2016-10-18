@@ -90,6 +90,10 @@ public class ViestiDao implements Dao<Viesti, Integer> {
 
         return viestit;
     }
+    
+    public void save(Viesti viesti) throws SQLException {
+        this.database.update("INSERT INTO VIESTI(viestiid, viesti, lankaid, kayttajaid, aika) VALUES (?, ?, ?, ?, ?)", viesti.getId(), viesti.getViesti(), viesti.getLankaId(), viesti.getKayttajaId(), viesti.getAika());
+    }
 
     @Override
     public void delete(Integer key) throws SQLException {

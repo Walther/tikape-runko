@@ -66,6 +66,10 @@ public class KayttajaDao implements Dao<Kayttaja, Integer> {
 
         return kayttajat;
     }
+    
+    public void save(Kayttaja kayttaja) throws SQLException {
+        this.database.update("INSERT INTO KAYTTAJA (kayttajaid, nimi) VALUES (?, ?)", kayttaja.getId(), kayttaja.getNimi());
+    }
 
     @Override
     public void delete(Integer key) throws SQLException {

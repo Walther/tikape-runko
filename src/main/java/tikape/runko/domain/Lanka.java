@@ -5,16 +5,22 @@ public class Lanka {
     private Integer lankaid;
     private String nimi;
     private Integer alueid;
+    private Integer viestiMaara;
+    private String aika;
 
-    public Lanka(Integer id, String nimi, Integer alueid) {
+    public Lanka(Integer id, String nimi, Integer alueid, Integer viestiMaara, String aika) {
         this.lankaid = id;
         this.nimi = nimi;
         this.alueid = alueid;
+        this.viestiMaara = viestiMaara;
+        this.aika = aika;
     }
     public Lanka(String nimi, Integer alueid) {
         this.lankaid = null;
         this.nimi = nimi;
         this.alueid = alueid;
+        this.viestiMaara = 0;
+        this.aika = null;
     }
     public Integer getId() {
         return lankaid;
@@ -39,5 +45,14 @@ public class Lanka {
     public void setAlueId(Integer id) {
         this.alueid = alueid;
     }
+    
+        public Integer getViestiMaara() {
+        return viestiMaara;
+    }
+        public String getAika() {
+        return aika;
+    }
+
+
 
 }

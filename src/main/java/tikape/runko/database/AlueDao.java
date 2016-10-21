@@ -19,7 +19,7 @@ public class AlueDao implements Dao<Alue, Integer> {
     @Override
     public Alue findOne(Integer key) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Alue WHERE alueid = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT alue.alueID, alue.nimi as aluenimi, count(viesti) as  viestiMaara, aika  from alue left join Lanka on Lanka.alueID = alue.alueID left join Viesti on Viesti.lankaID = lanka.lankaID WHERE alue.alueid = ? group by alue.alueID order by aika desc;");
         stmt.setObject(1, key);
 
         ResultSet rs = stmt.executeQuery();
@@ -29,9 +29,11 @@ public class AlueDao implements Dao<Alue, Integer> {
         }
 
         Integer alueid = rs.getInt("alueid");
-        String nimi = rs.getString("nimi");
+        String nimi = rs.getString("aluenimi");
+        Integer viestiMaara = rs.getInt("viestiMaara");
+        String aika = rs.getString("aika");
 
-        Alue o = new Alue(alueid, nimi);
+        Alue o = new Alue(alueid, nimi, viestiMaara, aika);
 
         rs.close();
         stmt.close();
@@ -44,15 +46,17 @@ public class AlueDao implements Dao<Alue, Integer> {
     public List<Alue> findAll() throws SQLException {
 
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Alue");
+        PreparedStatement stmt = connection.prepareStatement("SELECT alue.alueID, alue.nimi as aluenimi, count(viesti) as  viestiMaara, aika  from alue left join Lanka on Lanka.alueID = alue.alueID left join Viesti on Viesti.lankaID = lanka.lankaID group by alue.alueID order by aika desc;");
 
         ResultSet rs = stmt.executeQuery();
         List<Alue> alueet = new ArrayList<>();
         while (rs.next()) {
             Integer alueid = rs.getInt("alueid");
-            String nimi = rs.getString("nimi");
+            String nimi = rs.getString("aluenimi");
+            Integer viestiMaara = rs.getInt("viestiMaara");
+            String aika = rs.getString("aika");
 
-            alueet.add(new Alue(alueid, nimi));
+            alueet.add(new Alue(alueid, nimi, viestiMaara, aika));
         }
 
         rs.close();

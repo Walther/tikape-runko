@@ -4,14 +4,21 @@ public class Alue {
 
     private Integer alueid;
     private String nimi;
+    private Integer viestiMaara;
+    private String aika;
 
-    public Alue (Integer id, String nimi) {
+    public Alue(Integer id, String nimi, Integer viestiMaara, String aika) {
         this.alueid = id;
         this.nimi = nimi;
+        this.viestiMaara = viestiMaara;
+        this.aika = aika;
     }
-    public Alue (String nimi) {
+
+    public Alue(String nimi) {
         this.alueid = null;
         this.nimi = nimi;
+        this.viestiMaara = 0;
+        this.aika = null;
     }
 
     public Integer getId() {
@@ -30,5 +37,12 @@ public class Alue {
         this.nimi = nimi;
     }
 
-}
+    public Integer getViestiMaara() {
+        return viestiMaara;
+    }
+    
+    public String getAika() {
+        return aika;
+    }
 
+}

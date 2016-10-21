@@ -29,11 +29,10 @@ public class Main {
         LankaDao lankaDao = new LankaDao(database);
         ViestiDao viestiDao = new ViestiDao(database);
 
-        get("/", (req, res) -> { // Same as /alueet
+        get("/", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("alueet", alueDao.findAll());
 
-            return new ModelAndView(map, "alueet");
+            return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
 
         get("/kayttajat", (req, res) -> {
@@ -78,19 +77,18 @@ public class Main {
             System.out.println("Vastaanotettiin" + nimi);
             Alue alue = new Alue(nimi);
             alueDao.save(alue);
-            Integer alueid = alue.getId();
-            res.redirect("/alueet/" + alueid);
+            res.redirect("/alueet");
             return nimi;
         });
 
         post("/uusilanka", (req, res) -> {
             String nimi = req.queryParams("nimi");
             Integer alueid = Integer.parseInt(req.queryParams("alueid"));
-            System.out.println("Vastaanotettiin" + nimi);
+            System.out.println("Vastaanotettiin nimi: " + nimi);
+            System.out.println("Vastaanotettiin alueID: " + alueid);
             Lanka lanka = new Lanka(nimi, alueid);
             lankaDao.save(lanka);
-            Integer lankaid = lanka.getId();
-            res.redirect("/langat/" + lankaid);
+            res.redirect("/alueet/" + alueid);
             return nimi;
         });
 

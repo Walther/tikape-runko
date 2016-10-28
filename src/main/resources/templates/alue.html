@@ -29,7 +29,7 @@
         <form method="POST" action="/uusilanka">
             Nimi:<br/>
             <input type="text" name="nimi"/><br/>
-            <input type="number" name="alueid" th:value="${alue.id}"/>
+            <input type="hidden" name="alueid" th:value="${alue.id}"/>
             <input type="submit" value="Lisää lanka"/>
         </form>
     </body>

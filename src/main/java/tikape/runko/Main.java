@@ -34,7 +34,6 @@ public class Main {
         } 
 
         Database database = new Database(jdbcOsoite);
-        database.init();
 
         KayttajaDao kayttajaDao = new KayttajaDao(database);
         AlueDao alueDao = new AlueDao(database);

@@ -3,6 +3,7 @@ package tikape.runko.database;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.net.*;
 
 public class Database {
 
@@ -10,6 +11,7 @@ public class Database {
 
     public Database(String databaseAddress) throws ClassNotFoundException {
         this.databaseAddress = databaseAddress;
+        init();
     }
 
    private void init() {
@@ -98,6 +100,8 @@ public class Database {
         lista.add("INSERT INTO ALUE (alueID, nimi) VALUES (2, 'Elämä');");
         lista.add("INSERT INTO LANKA (lankaID, nimi, alueID) VALUES (1, 'Tikape', 1);");
         lista.add("INSERT INTO VIESTI (viestiID, kayttajaID, lankaid, aika, viesti) VALUES (1, 1, 1, '2016-10-21T00:50:16Z', 'Osaamme ohjelmoida!');");
+
+        return lista;
     }
 
 }
